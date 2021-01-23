@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="static/assets/js/echarts.min.js"></script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>豆瓣电影TOP250评分分布图</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v2.0.1
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+{#  <!-- ======= Top Bar ======= -->#}
+{#  <section id="topbar" class="d-none d-lg-block">#}
+{#    <div class="container clearfix">#}
+{#      <div class="contact-info float-left">#}
+{#        <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>#}
+{#        <i class="icofont-phone"></i> +1 5589 55488 55#}
+{#      </div>#}
+{#      <div class="social-links float-right">#}
+{#        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>#}
+{#        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>#}
+{#        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>#}
+{#        <a href="#" class="skype"><i class="icofont-skype"></i></a>#}
+{#        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="index.html"><span>Mamba</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="static/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/index">首页</a></li>
+          <li><a href="/movie">电影</a></li>
+          <li><a href="/score">评分</a></li>
+          <li><a href="/word">词云</a></li>
+          <li><a href="/team">团队</a></li>
+{#          <li class="drop-down"><a href="">Drop Down</a>#}
+{#            <ul>#}
+{#              <li><a href="#">Drop Down 1</a></li>#}
+{#              <li class="drop-down"><a href="#">Drop Down 2</a>#}
+{#                <ul>#}
+{#                  <li><a href="#">Deep Drop Down 1</a></li>#}
+{#                  <li><a href="#">Deep Drop Down 2</a></li>#}
+{#                  <li><a href="#">Deep Drop Down 3</a></li>#}
+{#                  <li><a href="#">Deep Drop Down 4</a></li>#}
+{#                  <li><a href="#">Deep Drop Down 5</a></li>#}
+{#                </ul>#}
+{#              </li>#}
+{#              <li><a href="#">Drop Down 3</a></li>#}
+{#              <li><a href="#">Drop Down 4</a></li>#}
+{#              <li><a href="#">Drop Down 5</a></li>#}
+{#            </ul>#}
+{#          </li>#}
+{#          <li><a href="#contact">Contact Us</a></li>#}
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+    <!-- ======= Our Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>豆瓣电影TOP250评分分布图</h2>
+          <p>由Python爬虫、Flask框架、Echarts、WordCloud等提供技术支持。</p>
+
+      </div>
+
+
+      <!-- ======= Counts Section ======= -->
+    <section class="counts section-bg">
+      <div class="container">
+         <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 100%;height:400px;"></div>
+
+        </div>
+    </section><!-- End Counts Section -->
+
+
+       <script type="text/javascript">
+var dom = document.getElementById("main");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: {{score}},
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+
+            type: 'bar',
+            barWidth: '60%',
+            data: {{num}}
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+
+</body>
+
+</html>
